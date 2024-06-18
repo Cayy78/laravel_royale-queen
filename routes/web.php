@@ -22,12 +22,16 @@ Route::get('/admin', function () {
     return view('admin_area/index');
 });
 
-Route::get('/admin_brand', function () {
-    return view('admin_area/insert_brand');
+Route::get('/admin_product', function () {
+    return view('admin_area/insert_product');
 });
 
-Route::get('/admin_area/insert_brand', [AdminAreaController::class, 'showInsertBrandForm']);
+Route::get('/admin_area/insert_product', [AdminAreaController::class, 'showInsertProductForm']);
+Route::post('/admin_area/insert_product', [AdminAreaController::class, 'insertProduct'])->name('admin_area.insert_product');
+
 Route::post('/admin_area/insert_brand', [AdminAreaController::class, 'insertBrand'])->name('admin_area.insert_brand');
+
+Route::post('/admin_area/insert_category', [AdminAreaController::class, 'insertCategory'])->name('admin_area.insert_category');
 
 
 

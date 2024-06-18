@@ -1,4 +1,5 @@
-<form action="" method="post" class="mb-2">
+<form action="{{ url('admin_area/insert_brand') }}" method="post" class="mb-2">
+  @csrf
 <div class="input-group w-90 mb-2">
   <span class="input-group-text bg-info" id="basic-addon1"><i class="fa-solid fa-receipt"></i></span>
   <input type="text" class="form-control" name="cat-title" placeholder="Insert Brands" aria-label="Categories" aria-describedby="basic-addon1">

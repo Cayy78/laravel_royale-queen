@@ -6,23 +6,19 @@ use Illuminate\Http\Request;
 
 class Adminareacontroller extends Controller
 {
-    //
-    public function showInsertBrandForm()
+
+    public function brandCategory(Request $request)
     {
-        return view('admin_area.insert_brand');
+        return redirect('/admin?view=brands')->with('success', 'Category added successfully.');
     }
 
-    // Menangani insert brand
-    public function insertBrand(Request $request)
+    public function insertCategory(Request $request)
     {
-        // Validasi data
-        $request->validate([
-            'brand_name' => 'required|string|max:255',
-        ]);
+        return redirect('/admin?view=categories')->with('success', 'Category added successfully.');
+    }
 
-        // Simpan data brand ke database (misal menggunakan model Brand)
-        // Brand::create(['name' => $request->brand_name]);
-
-        return redirect()->back()->with('success', 'Brand has been inserted successfully');
+    public function showInsertProductForm()
+    {
+        return view('admin_area.insert_product');
     }
 }
