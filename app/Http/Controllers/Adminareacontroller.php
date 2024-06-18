@@ -21,4 +21,9 @@ class Adminareacontroller extends Controller
     {
         return view('admin_area.insert_product');
     }
+
+    public function showProductDetail()
+    {
+        return view('product_detail');
+    }
 }

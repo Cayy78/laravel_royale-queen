@@ -27,7 +27,8 @@ Route::get('/admin_product', function () {
 });
 
 Route::get('/admin_area/insert_product', [AdminAreaController::class, 'showInsertProductForm']);
-Route::post('/admin_area/insert_product', [AdminAreaController::class, 'insertProduct'])->name('admin_area.insert_product');
+
+Route::get('product_detail', [AdminAreaController::class, 'showProductDetail']);
 
 Route::post('/admin_area/insert_brand', [AdminAreaController::class, 'insertBrand'])->name('admin_area.insert_brand');
 
