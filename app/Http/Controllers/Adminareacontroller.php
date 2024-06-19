@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\Insert_Categories;
+use App\Models\InsertCategories;
 
 class Adminareacontroller extends Controller
 {
@@ -12,8 +14,10 @@ class Adminareacontroller extends Controller
         return redirect('/admin?view=brands')->with('success', 'Category added successfully.');
     }
 
-    public function insertCategory(Request $request)
+    public function insertCategory(Insert_Categories $request)
     {
+        $input = $request->validated();
+        InsertCategories::create($input);
         return redirect('/admin?view=categories')->with('success', 'Category added successfully.');
     }
 
