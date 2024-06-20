@@ -64,7 +64,7 @@
                     <button class="my-3"><a href="{{ url('admin_area/insert_product') }}" class="nav-link text-light bg-info my-1">Insert Products</a></button>
                     <button><a href="{{ url('admin') }}" class="nav-link text-light bg-info my-1">View Products</a></button>
                     <button><a href="{{ url('admin?view=categories') }}" class="nav-link text-light bg-info my-1">Insert Categories</a></button>
-                    <button><a href="{{ url('admin') }}" class="nav-link text-light bg-info my-1">View Categories</a></button>
+                    <button><a href="{{ url('admin?view=view_categories') }}" class="nav-link text-light bg-info my-1">View Categories</a></button>
                     <button><a href="{{ url('admin?view=brands') }}" class="nav-link text-light bg-info my-1">Insert Brands</a></button>
                     <button><a href="{{ url('admin') }}" class="nav-link text-light bg-info my-1">View Brands</a></button>
                     <button><a href="{{ url('admin') }}" class="nav-link text-light bg-info my-1">All Orders</a></button>
@@ -80,7 +80,9 @@
             @if(request()->get('view') == 'categories')
                 @include('admin_area.insert_categories')
             @elseif(request()->get('view') == 'brands')
-                @include('admin_area.insert_brands')
+                @include('admin_area.insert_brands') 
+            @elseif(request()->get('view') == 'view_categories')
+                @include('admin_area.view_categories')                
             @else
                 <p class="text-center">Select an option from above to manage details.</p>
             @endif

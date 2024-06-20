@@ -34,6 +34,6 @@ Route::post('/admin_area/insert_brand', [AdminAreaController::class, 'insertBran
 
 Route::post('/admin_area/insert_category', [AdminAreaController::class, 'insertCategory'])->name('admin_area.insert_category');
 
-
+Route::post('/admin_area/view_categories', [AdminAreaController::class, 'viewCategories'])->name('admin_area.view_categories');
 
 

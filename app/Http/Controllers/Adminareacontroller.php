@@ -25,6 +25,12 @@ class Adminareacontroller extends Controller
         return redirect('/admin?view=categories')->with('success', 'Category added successfully.');
     }
 
+    public function viewCategories(Request $request)
+    {
+        return redirect('/admin?view=view_categories');
+    }
+    
+
     public function showInsertProductForm()
     {
         return view('admin_area.insert_product');
