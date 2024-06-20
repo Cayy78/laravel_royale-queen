@@ -1,30 +1,17 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminAreaController; 
-use App\Http\Controllers\UserController; 
+use App\Http\Controllers\AdminAreaController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/admin', function () {
-    return view('admin_area/index');
-});
+Route::get('/admin', [AdminAreaController::class, 'view'])->name('admin_area.view');
 
 Route::get('/admin_product', function () {
-    return view('admin_area/insert_product');
+    return view('admin_area.insert_product');
 });
 
 Route::get('/admin_area/insert_product', [AdminAreaController::class, 'showInsertProductForm']);
@@ -35,7 +22,9 @@ Route::post('/admin_area/insert_brand', [AdminAreaController::class, 'insertBran
 
 Route::post('/admin_area/insert_category', [AdminAreaController::class, 'insertCategory'])->name('admin_area.insert_category');
 
-Route::post('/admin_area/view_categories', [AdminAreaController::class, 'viewCategories'])->name('admin_area.view_categories');
+Route::post('/admin_area/update_category/{id}', [AdminAreaController::class, 'updateCategory'])->name('admin_area.update_category');
+Route::get('/admin_area/delete_category/{id}', [AdminAreaController::class, 'deleteCategory'])->name('admin_area.delete_category');
 
-
+Route::post('/admin_area/update_brand/{id}', [AdminAreaController::class, 'updateBrand'])->name('admin_area.update_brand');
+Route::get('/admin_area/delete_brand/{id}', [AdminAreaController::class, 'deleteBrand'])->name('admin_area.delete_brand');
 

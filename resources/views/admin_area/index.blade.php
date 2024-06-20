@@ -91,7 +91,9 @@
             @elseif(request()->get('view') == 'brands')
                 @include('admin_area.insert_brands') 
             @elseif(request()->get('view') == 'view_categories')
-                @include('admin_area.view_categories')                
+                @include('admin_area.view_categories')
+            @elseif(request()->get('view') == 'view_brands')
+                @include('admin_area.view_brands')
             @else
                 <p class="text-center">Select an option from above to manage details.</p>
             @endif
@@ -101,11 +103,93 @@
         <div class="bg-dark text-light p-3 text-center footer">
             <p>Designed by kami-2024</p>
         </div> 
+        
+        <!-- Modal -->
+        <div class="modal fade" id="editCategoryModal" tabindex="-1" aria-labelledby="editCategoryModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editCategoryModalLabel">Edit Category</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="editCategoryForm" method="post">
+                            @csrf
+                            <div class="input-group w-90 mb-2">
+                                <span class="input-group-text bg-info" id="basic-addon1"><i class="fa-solid fa-receipt"></i></span>
+                                <input type="text" class="form-control" id="edit_category_title" name="categories_title" placeholder="Edit Category" aria-label="Category" aria-describedby="basic-addon1">
+                            </div>
+                            @error('categories_title')<p class="text text-danger">{{$message}}</p>@enderror
+                            <div class="input-group w-10 mb-2 m-auto">
+                                <button class="bg-info p-2 my-3 border-0">Update Category</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="editBrandModal" tabindex="-1" aria-labelledby="editBrandModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editBrandModalLabel">Edit Brand</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="editBrandForm" method="post">
+                            @csrf
+                            <div class="input-group w-90 mb-2">
+                                <span class="input-group-text bg-info" id="basic-addon1"><i class="fa-solid fa-receipt"></i></span>
+                                <input type="text" class="form-control" id="edit_brand_title" name="brands_title" placeholder="Edit Brand" aria-label="Brand" aria-describedby="basic-addon1">
+                            </div>
+                            @error('brands_title')<p class="text text-danger">{{$message}}</p>@enderror
+                            <div class="input-group w-10 mb-2 m-auto">
+                                <button class="bg-info p-2 my-3 border-0">Update Brand</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
     </div>
 
     <!-- Bootstrap JS link -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" 
     crossorigin="anonymous"></script>
+
+    <script>
+        const editCategoryModal = document.getElementById('editCategoryModal');
+        editCategoryModal.addEventListener('show.bs.modal', function (event) {
+            const button = event.relatedTarget;
+            const categoryId = button.getAttribute('data-bs-id');
+            const categoryTitle = button.getAttribute('data-bs-title');
+
+            const modalTitle = editCategoryModal.querySelector('.modal-title');
+            const inputTitle = editCategoryModal.querySelector('#edit_category_title');
+            const form = editCategoryModal.querySelector('#editCategoryForm');
+
+            modalTitle.textContent = `Edit Category: ${categoryTitle}`;
+            inputTitle.value = categoryTitle;
+            form.action = `/admin_area/update_category/${categoryId}`;
+        });
+
+        const editBrandModal = document.getElementById('editBrandModal');
+        editBrandModal.addEventListener('show.bs.modal', function (event) {
+            const button = event.relatedTarget;
+            const brandId = button.getAttribute('data-bs-id');
+            const brandTitle = button.getAttribute('data-bs-title');
+
+            const modalTitle = editBrandModal.querySelector('.modal-title');
+            const inputTitle = editBrandModal.querySelector('#edit_brand_title');
+            const form = editBrandModal.querySelector('#editBrandForm');
+
+            modalTitle.textContent = `Edit Brand: ${brandTitle}`;
+            inputTitle.value = brandTitle;
+            form.action = `/admin_area/update_brand/${brandId}`;
+        });
+    </script>
 </body>
 </html>
