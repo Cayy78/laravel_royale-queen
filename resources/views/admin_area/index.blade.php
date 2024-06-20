@@ -31,16 +31,25 @@
      </style>
 </head>
 <body>
+    <div class="bg-dark text-light">
+    <ul class="nav flex-column">
+    @if(isset($brands))
+    @foreach($brands as $brand)
+    @endforeach
+@else
+@endif
+    </ul>
+</div>
     <!-- Navbar -->
     <div class="container-fluid p-0">
         <!-- Navbar pertama -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-info">
+        <nav class="navbar navbar-expand-lg navbar-light bg-dark">
             <div class="container-fluid">
                 <img src="{{ asset('image/logo.png') }}" alt="" class="logo">
                 <nav class="navbar navbar-expand-lg">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a href="" class="nav-link">Welcome Guest</a>
+                            <a href="" class="nav-link text-light">Welcome Guest</a>
                         </li>
                     </ul>
                 </nav>
@@ -61,16 +70,16 @@
                 </div>
                 <!-- Button Group -->
                 <div class="button text-center">
-                    <button class="my-3"><a href="{{ url('admin_area/insert_product') }}" class="nav-link text-light bg-info my-1">Insert Products</a></button>
-                    <button><a href="{{ url('admin') }}" class="nav-link text-light bg-info my-1">View Products</a></button>
-                    <button><a href="{{ url('admin?view=categories') }}" class="nav-link text-light bg-info my-1">Insert Categories</a></button>
-                    <button><a href="{{ url('admin?view=view_categories') }}" class="nav-link text-light bg-info my-1">View Categories</a></button>
-                    <button><a href="{{ url('admin?view=brands') }}" class="nav-link text-light bg-info my-1">Insert Brands</a></button>
-                    <button><a href="{{ url('admin') }}" class="nav-link text-light bg-info my-1">View Brands</a></button>
-                    <button><a href="{{ url('admin') }}" class="nav-link text-light bg-info my-1">All Orders</a></button>
-                    <button><a href="{{ url('admin') }}" class="nav-link text-light bg-info my-1">All Payments</a></button>
-                    <button><a href="{{ url('admin') }}" class="nav-link text-light bg-info my-1">List Users</a></button>
-                    <button><a href="{{ url('logout') }}" class="nav-link text-light bg-info my-1">Logout</a></button>
+                    <button class="my-3"><a href="{{ url('admin_area/insert_product') }}" class="nav-link text-light bg-dark my-1">Insert Products</a></button>
+                    <button><a href="{{ url('admin') }}" class="nav-link text-light bg-dark my-1">View Products</a></button>
+                    <button><a href="{{ url('admin?view=categories') }}" class="nav-link text-light bg-dark my-1">Insert Categories</a></button>
+                    <button><a href="{{ url('admin?view=view_categories') }}" class="nav-link text-light bg-dark my-1">View Categories</a></button>
+                    <button><a href="{{ url('admin?view=brands') }}" class="nav-link text-light bg-dark my-1">Insert Brands</a></button>
+                    <button><a href="{{ url('admin') }}" class="nav-link text-light bg-dark my-1">View Brands</a></button>
+                    <button><a href="{{ url('admin') }}" class="nav-link text-light bg-dark my-1">All Orders</a></button>
+                    <button><a href="{{ url('admin') }}" class="nav-link text-light bg-dark my-1">All Payments</a></button>
+                    <button><a href="{{ url('admin') }}" class="nav-link text-light bg-dark my-1">List Users</a></button>
+                    <button><a href="{{ url('logout') }}" class="nav-link text-light bg-dark my-1">Logout</a></button>
                 </div>
             </div>
         </div>
@@ -89,7 +98,7 @@
         </div>
 
         <!-- Footer -->
-        <div class="bg-info p-3 text-center footer">
+        <div class="bg-dark text-light p-3 text-center footer">
             <p>Designed by kami-2024</p>
         </div> 
     </div>
