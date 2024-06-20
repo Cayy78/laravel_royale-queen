@@ -32,6 +32,10 @@ class AdminAreaController extends Controller
             $categories = InsertCategories::all();
             return view('admin_area.index', compact('categories'));
         }
+        elseif ($view == 'view_brands') {
+            $brands = InsertBrands::all();
+            return view('admin_area.index', compact('brands'));
+        }
 
         return view('admin_area.index');
     }
@@ -67,6 +71,29 @@ public function deleteCategory($id)
     $category->delete();
 
     return redirect('/admin?view=view_categories')->with('success', 'Category deleted successfully.');
+}
+
+public function editBrand($id)
+{
+    $brands = InsertBrands::find($id);
+    return view('admin_area.edit_brand', compact('brand'));
+}
+
+public function updateBrand(Request $request, $id)
+{
+    $brand = InsertBrands::find($id);
+    $brand->brands_title = $request->input('brands_title');
+    $brand->save();
+
+    return redirect('/admin?view=view_brands')->with('success', 'Category updated successfully.');
+}
+
+public function deleteBrand($id)
+{
+    $brand = InsertBrands::find($id);
+    $brand->delete();
+
+    return redirect('/admin?view=view_brands')->with('success', 'Category deleted successfully.');
 }
 
 }

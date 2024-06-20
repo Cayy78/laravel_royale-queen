@@ -23,3 +23,7 @@ Route::post('/admin_area/insert_category', [AdminAreaController::class, 'insertC
 
 Route::post('/admin_area/update_category/{id}', [AdminAreaController::class, 'updateCategory'])->name('admin_area.update_category');
 Route::get('/admin_area/delete_category/{id}', [AdminAreaController::class, 'deleteCategory'])->name('admin_area.delete_category');
+
+
+Route::post('/admin_area/update_brand/{id}', [AdminAreaController::class, 'updateBrand'])->name('admin_area.update_brand');
+Route::get('/admin_area/delete_brand/{id}', [AdminAreaController::class, 'deleteBrand'])->name('admin_area.delete_brand');
