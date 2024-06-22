@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminAreaController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\HomeController;
 
 
 Route::get('/', function () {
@@ -50,10 +51,10 @@ Route::get('/contact', function () {
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
 // Route untuk halaman login
-Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
-Route::post('login', [LoginController::class, 'login']);
+//  Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
+//  Route::post('login', [LoginController::class, 'login']);
 
-// Route untuk logout
+//Route untuk logout
 Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
 // Route untuk halaman home setelah login
@@ -61,5 +62,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 // Route default
 Route::get('/', function () {
-    return view('welcome');
-});
+     return view('welcome');
+ });
