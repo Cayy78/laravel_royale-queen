@@ -35,14 +35,14 @@
           <a class="nav-link active text-white" aria-current="page" href="#">Home</a>
         </li>
         <li class="nav-item">
-    <a class="nav-link text-white" href="#">Product</a>
+    <a class="nav-link text-white" href="#">Produk</a>
       </li>
 
         <li class="nav-item">
-          <a class="nav-link text-white" href="#">Register</a>
+        <a class="nav-link text-white" href="{{ route('register') }}">Register</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="#">Contact</a>
+        <a class="nav-link text-white" href="{{ route('contact') }}">Contact</a>
         </li>
         <li class="nav-item">
           <a class="nav-link text-white" href="#"><i class="fa-solid fa-cart-shopping"></i><sup>1</sup></a>
@@ -66,8 +66,9 @@
           <a class="nav-link" href="#">Welcome Guest</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Login</a>
-        </li>
+    <a class="nav-link" href="{{ route('login') }}">Login</a>
+</li>
+
     </ul>
  </nav>
 
