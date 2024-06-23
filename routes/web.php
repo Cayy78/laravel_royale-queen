@@ -25,6 +25,11 @@ Route::get('/contact', function () {
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
 Route::get('/admin_area/insert_product', [AdminAreaController::class, 'showInsertProductForm']);
+Route::post('/admin_area/insert_product', [AdminAreaController::class, 'insertProduct'])->name('admin_area.insert_product');
+
+
+Route::get('/admin', [AdminAreaController::class, 'view'])->name('admin_area.view');
+
 
 Route::get('product_detail', [AdminAreaController::class, 'showProductDetail']);
 
