@@ -20,13 +20,13 @@
     <!-- Custom CSS file -->
      <link rel="stylesheet" href="{{ asset('style.css') }}">
      <style>
+        .logo {
+            width: 100px;
+            height: auto; 
+        }
         .admin_image{
             width: 100px;
             object-fit: contain;
-        }
-        .footer{
-            position: absolute;
-            bottom:0;
         }
      </style>
 </head>
@@ -71,11 +71,11 @@
                 <!-- Button Group -->
                 <div class="button text-center">
                     <button class="my-3"><a href="{{ url('admin_area/insert_product') }}" class="nav-link text-light bg-dark my-1">Insert Products</a></button>
-                    <button><a href="{{ url('admin') }}" class="nav-link text-light bg-dark my-1">View Products</a></button>
+                    <button><a href="{{ route('admin_area.view', ['view' => 'view_products']) }}" class="nav-link text-light bg-dark my-1">View Products</a></button>
                     <button><a href="{{ url('admin?view=categories') }}" class="nav-link text-light bg-dark my-1">Insert Categories</a></button>
                     <button><a href="{{ url('admin?view=view_categories') }}" class="nav-link text-light bg-dark my-1">View Categories</a></button>
                     <button><a href="{{ url('admin?view=brands') }}" class="nav-link text-light bg-dark my-1">Insert Brands</a></button>
-                    <button><a href="{{ url('admin') }}" class="nav-link text-light bg-dark my-1">View Brands</a></button>
+                    <button><a href="{{ url('admin?view=view_brands') }}" class="nav-link text-light bg-dark my-1">View Brands</a></button>
                     <button><a href="{{ url('admin') }}" class="nav-link text-light bg-dark my-1">All Orders</a></button>
                     <button><a href="{{ url('admin') }}" class="nav-link text-light bg-dark my-1">All Payments</a></button>
                     <button><a href="{{ url('admin') }}" class="nav-link text-light bg-dark my-1">List Users</a></button>

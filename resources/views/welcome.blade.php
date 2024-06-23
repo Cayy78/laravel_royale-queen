@@ -16,11 +16,67 @@
     crossorigin="anonymous" 
     referrerpolicy="no-referrer" />
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+     <!-- custom css for styling -->
+     <style>
+        .logo {
+            width: 100px; /* Adjusted width */
+            height: auto; /* Adjust height to maintain aspect ratio */
+        }
+        .card-img-top {
+            width: 90%;
+            height: 300px;
+            object-fit: contain;
+        }
+        .product-images {
+            display: flex;
+            gap: 10px;
+        }
+        .product-images img {
+            max-width: 100%;
+            max-height: 200px;
+            object-fit: contain;
+        }
+        .product-detail {
+            padding: 15px;
+        }
+        .product-description, .product-price {
+            padding: 15px;
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
     <!-- NAVBAR -->
     <div class="container-fluid p-0">
+        <!-- First child -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+            <div class="container-fluid">
+                <img src="{{ asset('image/logo.png') }}" alt="" class="logo">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active text-white" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{{ route('contact') }}">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#"><i class="fa-solid fa-cart-shopping"></i><sup>1</sup></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#">Total Price: 100/-</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-light" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
         <!-- first child -->
         <nav class="navbar navbar-expand-lg navbar-light bg-info">
   <div class="container-fluid">
@@ -90,13 +146,7 @@
                     @endif
                 </li>
             </ul>
-        </nav>
-
-        <!-- Third Child -->
-        <div class="bg-light">
-            <h3 class="text-center">Hidden Store</h3>
-            <p class="text-center">Blom ada</p>
-        </div>
+        </nav>  
 
         <!-- Fourth Child -->
         <div class="row">
