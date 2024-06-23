@@ -2,22 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>commerce</title>
-    <!-- bootstrap css link -->
+    <title>Commerce</title>
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" 
     rel="stylesheet" 
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" 
     crossorigin="anonymous">
-    <!-- font awesome link -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" 
     integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" 
     crossorigin="anonymous" 
     referrerpolicy="no-referrer" />
-
-    <!-- css file -->
-     <link rel="stylesheet" href="style.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 <body>
     <!-- NAVBAR -->
@@ -70,158 +69,109 @@
     </ul>
  </nav>
 
- <!-- third Child -->
-  <div class="bg-light">
-    <h3 class="text-center">Hidden Store</h3>
-    <p class="text-center">Blom ada</p>
-  </div>
+        <!-- Second child -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    @if(Auth::check())
+                        <a class="nav-link" href="#">Welcome {{ Auth::user()->name }}</a>
+                    @else
+                        <a class="nav-link" href="#">Welcome Guest</a>
+                    @endif
+                </li>
+                <li class="nav-item">
+                    @if(Auth::check())
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="nav-link btn btn-link" style="color: inherit; text-decoration: inherit;">Logout</button>
+                        </form>
+                    @else
+                        <a class="nav-link" href="{{ route('login') }}">Login</a>
+                    @endif
+                </li>
+            </ul>
+        </nav>
 
+        <!-- Third Child -->
+        <div class="bg-light">
+            <h3 class="text-center">Hidden Store</h3>
+            <p class="text-center">Blom ada</p>
+        </div>
 
-  <!-- fourth child -->
-   <div class="row">
-    <div class="col-md-10">
-        <!-- products -->
-         <div class="row">
-            <div class="col-md-4 mb-2">
-                <div class="card" style="width: 30rem;">
-  <img src="image/Sepatu Lari 3.png" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-info">Add to cart</a>
-    <a href="{{ url('product_detail') }}" class="btn btn-Secondary">View Details</a>
-  </div>
-</div>
+        <!-- Fourth Child -->
+        <div class="row">
+            <div class="col-md-10">
+                <!-- Products -->
+                <div class="row">
+                    <div class="col-md-4 mb-2">
+                        <div class="card" style="width: 30rem;">
+                            <img src="{{ asset('image/Sepatu Lari 3.png') }}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <a href="#" class="btn btn-dark">Add to cart</a>
+                                <a href="{{ url('product_detail') }}" class="btn btn-secondary">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Repeat for other products -->
+                </div>
             </div>
-            <div class="col-md-4 mb-2">
-            <div class="card" style="width: 30rem;">
-  <img src="image/Sepatu Lari 1.png" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-info">Add to cart</a>
-    <a href="#" class="btn btn-Secondary">View Details</a>
-  </div>
-</div>
+            <div class="col-md-2 bg-secondary p-0">
+                <!-- Brands to be displayed -->
+                <ul class="navbar-nav me-auto text-center">
+                    <li class="nav-item bg-dark">
+                        <a href="#" class="nav-link text-light"><h4>Delivery Brands</h4></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text-light"><h4>Adidas</h4></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text-light"><h4>Puma</h4></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text-light"><h4>Nike</h4></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text-light"><h4>Asics</h4></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text-light"><h4>Doctor Marten</h4></a>
+                    </li>
+                </ul>
+                <!-- Categories to be displayed -->
+                <ul class="navbar-nav me-auto text-center">
+                    <li class="nav-item bg-dark">
+                        <a href="#" class="nav-link text-light"><h4>Categories</h4></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text-light"><h4>Sport</h4></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text-light"><h4>Casual</h4></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text-light"><h4>Formal</h4></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text-light"><h4>Sandals</h4></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text-light"><h4>Slip-ons</h4></a>
+                    </li>
+                </ul>
             </div>
-            <div class="col-md-4 mb-2">
-            <div class="card" style="width: 30rem;">
-  <img src="image/Sepatu Lari 2.png" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-info">Add to cart</a>
-    <a href="#" class="btn btn-Secondary">View Details</a>
-  </div>
-</div>
-            </div>
-            <div class="col-md-4 mb-2">
-            <div class="card" style="width: 30rem;">
-  <img src="image/Sepatu Lari 2.png" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-info">Add to cart</a>
-    <a href="#" class="btn btn-Secondary">View Details</a>
-  </div>
-</div>
-            </div>
-            <div class="col-md-4 mb-2">
-            <div class="card" style="width: 30rem;">
-  <img src="image/Sepatu Lari 2.png" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-info">Add to cart</a>
-    <a href="#" class="btn btn-Secondary">View Details</a>
-  </div>
-</div>
-            </div>
-            <div class="col-md-4 mb-2">
-            <div class="card" style="width: 30rem;">
-  <img src="image/Sepatu Lari 2.png" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-info">Add to cart</a>
-    <a href="#" class="btn btn-Secondary">View Details</a>
-  </div>
-</div>
-            </div>
-         </div>
-    </div>
-    <div class="col-md-2 bg-secondary p-0">
-        <!-- brands to be displayed -->
-        <ul class="navbar-nav me-auto text-center">
-        <li class="nav-item bg-info">
-        <a href="#" class="nav-link text-light"><h4>Delivery Brands</
-        h4></a>
-        </li>
-        <li class="nav-item ">
-        <a href="#" class="nav-link text-light"><h4>Brand 1</
-        h4></a>
-        </li>
-        <li class="nav-item ">
-        <a href="#" class="nav-link text-light"><h4>Brand 2</
-        h4></a>
-        </li>
-        <li class="nav-item ">
-        <a href="#" class="nav-link text-light"><h4>Brand 3</
-        h4></a>
-        </li>
-        <li class="nav-item ">
-        <a href="#" class="nav-link text-light"><h4>Brand 4</
-        h4></a>
-        </li>
-        <li class="nav-item ">
-        <a href="#" class="nav-link text-light"><h4>Brand 5</
-        h4></a>
-        </li>
-        </ul>
+        </div>
 
-        <!-- categories to be displayed -->
-        <ul class="navbar-nav me-auto text-center">
-        <li class="nav-item bg-info">
-        <a href="#" class="nav-link text-light"><h4>Categories</
-        h4></a>
-        </li>
-        <li class="nav-item ">
-        <a href="#" class="nav-link text-light"><h4>Categories1</
-        h4></a>
-        </li>
-        <li class="nav-item ">
-        <a href="#" class="nav-link text-light"><h4>Categories2</
-        h4></a>
-        </li>
-        <li class="nav-item ">
-        <a href="#" class="nav-link text-light"><h4>Categories3</
-        h4></a>
-        </li>
-        <li class="nav-item ">
-        <a href="#" class="nav-link text-light"><h4>Categories4</
-        h4></a>
-        </li>
-        <li class="nav-item ">
-        <a href="#" class="nav-link text-light"><h4>Categories5</
-        h4></a>
-        </li>
-        </ul>
-    </div>
-   </div>
-
-
-<!-- last child -->
- -<div class="bg-info p-3 text-center">
-    <p>Designed by kami-2024</p>
- </div> 
+        <!-- Last Child -->
+        <div class="bg-dark p-3 text-center text-light">
+            <p>Designed by kami-2024</p>
+        </div>
     </div>
 
-
-
-<!-- bootstrap js link -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
-integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" 
-crossorigin="anonymous">
-</script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" 
+    crossorigin="anonymous"></script>
 </body>
 </html>

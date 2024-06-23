@@ -47,10 +47,11 @@
                 <div class="form-outline mb-4 w-50 m-auto">
                     <select name="product_category" id="" class="form-select">
                         <option value="">Select a Category</option>
-                        <option value="">Category1</option>
-                        <option value="">Category2</option>
-                        <option value="">Category3</option>
-                        <option value="">Category4</option>
+                        <option value="">Sport</option>
+                        <option value="">Casual</option>
+                        <option value="">Formal</option>
+                        <option value="">Sandals</option>
+                        <option value="">Slip-ons</option>
                     </select>
                 </div>
 
@@ -58,10 +59,11 @@
                 <div class="form-outline mb-4 w-50 m-auto">
                     <select name="product_brands" id="" class="form-select">
                         <option value="">Select a Brands</option>
-                        <option value="">Brand1</option>
-                        <option value="">Brand2</option>
-                        <option value="">Brand3</option>
-                        <option value="">Brand4</option>
+                        <option value="">Adidas</option>
+                        <option value="">Puma</option>
+                        <option value="">Nike</option>
+                        <option value="">Asics</option>
+                        <option value="">Doctor Marteen</option>
                     </select>
                 </div>
 
