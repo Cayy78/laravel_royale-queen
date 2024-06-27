@@ -21,4 +21,8 @@ class Product extends Model
         'product_image3',
         'product_price',
     ];
+    public function carts()
+    {
+        return $this->hasMany(Cart::class);
+    }
 }

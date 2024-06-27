@@ -22,6 +22,9 @@ class AuthController extends Controller
 
     if (Auth::attempt($credentials)) {
         // Jika autentikasi berhasil
+        if (Auth::user()->isAdmin()) {
+            return view('admin_area.index');
+        }
         return redirect()->intended('/');
     }
 

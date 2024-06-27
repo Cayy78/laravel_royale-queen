@@ -64,7 +64,7 @@
                             <a class="nav-link text-white" href="{{ route('contact') }}">Contact</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href=""><i class="fa-solid fa-cart-shopping"></i><sup>1</sup></a>
+                           <a class="nav-link text-white" href="{{ route('cart') }}"><i class="fa-solid fa-cart-shopping"></i><sup>1</sup></a>
                         </li>
                     </ul>
                     <form action="{{ route('search') }}" method="GET" class="d-flex mb-4">
@@ -109,9 +109,9 @@
                                 <img src="{{ asset('storage/' . str_replace('public/', '', $product->product_image1)) }}" class="card-img-top" alt="{{ $product->product_title }}">
                                 <div class="card-body">
                                     <h5 class="card-title">{{ $product->product_title }}</h5>
-                                    <p class="product-description">{{ $product->description }}</p>
-                                    <a href="#" class="btn btn-dark">Add to cart</a>
-                                    <a href="{{ route('product.detail', $product->id) }}" class="btn btn-secondary">View Details</a>
+                                    <p class="card-text">{{ $product->description }}</p>
+                                    <a href="{{ route('cart.add', ['id' => $product->id]) }}" class="btn btn-dark add-to-cart">Add to cart</a>
+                                    <a href="{{ url('product_detail', ['id' => $product->id]) }}" class="btn btn-secondary">View Details</a>
                                 </div>
                             </div>
                         </div>
@@ -121,46 +121,26 @@
             <div class="col-md-2 bg-secondary p-0">
                 <!-- Brands to be displayed -->
                 <ul class="navbar-nav me-auto text-center">
-                    <li class="nav-item bg-dark">
-                        <a href="#" class="nav-link text-light"><h4>Delivery Brands</h4></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link text-light"><h4>Adidas</h4></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link text-light"><h4>Puma</h4></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link text-light"><h4>Nike</h4></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link text-light"><h4>Asics</h4></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link text-light"><h4>Doctor Marten</h4></a>
-                    </li>
-                </ul>
+    <li class="nav-item bg-dark">
+        <a href="#" class="nav-link text-light"><h4>Delivery Brands</h4></a>
+    </li>
+    @foreach($brands as $brand)
+        <li class="nav-item">
+            <a href="#" class="nav-link text-light"><h4>{{ $brand->brands_title }}</h4></a>
+        </li>
+    @endforeach
+</ul>
                 <!-- Categories to be displayed -->
                 <ul class="navbar-nav me-auto text-center">
-                    <li class="nav-item bg-dark">
-                        <a href="#" class="nav-link text-light"><h4>Categories</h4></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link text-light"><h4>Sport</h4></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link text-light"><h4>Casual</h4></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link text-light"><h4>Formal</h4></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link text-light"><h4>Sandals</h4></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link text-light"><h4>Slip-ons</h4></a>
-                    </li>
-                </ul>
+    <li class="nav-item bg-dark">
+        <a href="#" class="nav-link text-light"><h4>Categories</h4></a>
+    </li>
+    @foreach($categories as $category)
+        <li class="nav-item">
+            <a href="#" class="nav-link text-light"><h4>{{ $category->categories_title }}</h4></a>
+        </li>
+    @endforeach
+</ul>
             </div>
         </div>
 
