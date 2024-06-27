@@ -1,5 +1,3 @@
-<!-- resources/views/welcome.blade.php -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +7,6 @@
     <title>Commerce</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <!-- Custom CSS -->
     <style>
@@ -67,9 +64,9 @@
                            <a class="nav-link text-white" href="{{ route('cart') }}"><i class="fa-solid fa-cart-shopping"></i><sup>1</sup></a>
                         </li>
                     </ul>
-                    <form action="{{ route('search') }}" method="GET" class="d-flex mb-4">
-                        <input class="form-control me-2" type="search" name="query" placeholder="Search for products..." aria-label="Search">
-                        <button class="btn btn-outline-light" type="submit">Search</button>
+                    <form action="{{ route('search') }}" method="GET" class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="query">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
                     </form>
                 </div>
             </div>
@@ -110,8 +107,9 @@
                                 <div class="card-body">
                                     <h5 class="card-title">{{ $product->product_title }}</h5>
                                     <p class="card-text">{{ $product->description }}</p>
+                                    <p class="card-text">${{ $product->product_price }}</p>
                                     <a href="{{ route('cart.add', ['id' => $product->id]) }}" class="btn btn-dark add-to-cart">Add to cart</a>
-                                    <a href="{{ url('product_detail', ['id' => $product->id]) }}" class="btn btn-secondary">View Details</a>
+                                    <a href="{{ route('product.detail', ['id' => $product->id]) }}" class="btn btn-secondary">View Details</a>
                                 </div>
                             </div>
                         </div>
@@ -121,26 +119,26 @@
             <div class="col-md-2 bg-secondary p-0">
                 <!-- Brands to be displayed -->
                 <ul class="navbar-nav me-auto text-center">
-    <li class="nav-item bg-dark">
-        <a href="#" class="nav-link text-light"><h4>Delivery Brands</h4></a>
-    </li>
-    @foreach($brands as $brand)
-        <li class="nav-item">
-            <a href="#" class="nav-link text-light"><h4>{{ $brand->brands_title }}</h4></a>
-        </li>
-    @endforeach
-</ul>
+                    <li class="nav-item bg-dark">
+                        <a href="#" class="nav-link text-light"><h4>Delivery Brands</h4></a>
+                    </li>
+                    @foreach($brands as $brand)
+                        <li class="nav-item">
+                            <a href="#" class="nav-link text-light"><h4>{{ $brand->brands_title }}</h4></a>
+                        </li>
+                    @endforeach
+                </ul>
                 <!-- Categories to be displayed -->
                 <ul class="navbar-nav me-auto text-center">
-    <li class="nav-item bg-dark">
-        <a href="#" class="nav-link text-light"><h4>Categories</h4></a>
-    </li>
-    @foreach($categories as $category)
-        <li class="nav-item">
-            <a href="#" class="nav-link text-light"><h4>{{ $category->categories_title }}</h4></a>
-        </li>
-    @endforeach
-</ul>
+                    <li class="nav-item bg-dark">
+                        <a href="#" class="nav-link text-light"><h4>Categories</h4></a>
+                    </li>
+                    @foreach($categories as $category)
+                        <li class="nav-item">
+                            <a href="#" class="nav-link text-light"><h4>{{ $category->categories_title }}</h4></a>
+                        </li>
+                    @endforeach
+                </ul>
             </div>
         </div>
 
