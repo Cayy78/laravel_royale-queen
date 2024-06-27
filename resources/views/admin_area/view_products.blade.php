@@ -37,8 +37,7 @@
                         <td><img src="{{ Storage::url($product->product_image1) }}" alt="{{ $product->product_title }} Image 1" width="50"></td>
                         <td><img src="{{ Storage::url($product->product_image2) }}" alt="{{ $product->product_title }} Image 2" width="50"></td>
                         <td><img src="{{ Storage::url($product->product_image3) }}" alt="{{ $product->product_title }} Image 3" width="50"></td>
-
-                        <td>${{ number_format($product->product_price, 2) }}</td>
+                        <td>{{ formatRupiah($product->product_price) }}</td>
                         <td>
                             <a href="{{ route('admin.products.edit', $product->id) }}" class="btn btn-primary">Edit</a>
                             <form action="{{ route('admin.products.delete', $product->id) }}" method="POST" style="display:inline;">

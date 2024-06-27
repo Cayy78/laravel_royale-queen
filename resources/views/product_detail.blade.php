@@ -1,55 +1,61 @@
+<!-- resources/views/product_detail.blade.php -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Commerce</title>
-    <!-- bootstrap css link -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" 
-    rel="stylesheet" 
-    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" 
-    crossorigin="anonymous">
-    <!-- font awesome link -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" 
-    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" 
-    crossorigin="anonymous" 
-    referrerpolicy="no-referrer" />
-
-    <!-- custom css for styling -->
+    <title>Product Detail</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- Custom CSS -->
     <style>
         .logo {
-    width: 100px; /* Adjusted width */
-    height: auto; /* Adjust height to maintain aspect ratio */
-}
-.card-img-top {
-    width: 90%;
-    height: 300px;
-    object-fit: contain;
-}
-.product-images {
-    display: flex;
-    gap: 20px; /* Adjusted gap to reduce space between images */
-}
-.product-images img {
-    width: 100%;
-    max-width: 48%; /* Adjusted to fit two images with closer spacing */
-    max-height: 200px;
-    object-fit: contain;
-}
-.product-detail {
-    padding: 15px;
-}
-.product-description, .product-price {
-    padding: 15px;
-    margin-bottom: 10px;
-}
+            width: 100px;
+            height: auto;
+        }
+        .product-main-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: contain;
+            margin-bottom: 20px;
+        }
+        .product-images {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .product-images img {
+            width: 48%;
+            max-height: 250px;
+            object-fit: contain;
+        }
+        .product-detail {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-description {
+            font-size: 16px;
+            margin-top: 20px; /* Add some margin to push the description down if it's too long */
+        }
+        .product-price {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px; /* Add some margin to push the price down if it's too long */
+        }
+        .btn-add-to-cart {
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
     <!-- NAVBAR -->
     <div class="container-fluid p-0">
-        <!-- first child -->
         <nav class="navbar navbar-expand-lg navbar-light bg-dark">
             <div class="container-fluid">
                 <img src="{{ asset('image/logo.png') }}" alt="" class="logo">
@@ -59,72 +65,54 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active text-white" aria-current="page" href="#">Home</a>
+                            <a class="nav-link active text-white" aria-current="page" href="">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="#">Contact</a>
+                            <a class="nav-link text-white" href="{{ route('contact') }}">Contact</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-white" href="#"><i class="fa-solid fa-cart-shopping"></i><sup>1</sup></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="#">Total Price:100/-</a>
+                            <a class="nav-link text-white" href="#">Total Price: 100/-</a>
                         </li>
                     </ul>
-                    <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <form action="{{ route('search') }}" method="GET" class="d-flex mb-4">
+                        <input class="form-control me-2" type="search" name="query" placeholder="Search for products..." aria-label="Search">
                         <button class="btn btn-outline-light" type="submit">Search</button>
                     </form>
                 </div>
             </div>
         </nav>
 
-        <!-- fourth child -->
-        <div class="container my-3">
+        <!-- Product Detail -->
+        <div class="container my-5">
             <div class="row">
-                <!-- Product Image and Add to Cart -->
-                <div class="col-md-4 mb-2">
-                    <div class="card">
-                        <img src="{{ asset('image/Sepatu Lari 3.png') }}" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-dark">Add to cart</a>
-                        </div>
-                    </div>
+                <div class="col-md-6">
+                    <img src="{{ asset('storage/' . str_replace('public/', '', $product->product_image1)) }}" alt="{{ $product->product_title }}" class="product-main-image">
                 </div>
-
-                <!-- Product Details -->
-                <div class="col-md-8">
+                <div class="col-md-6">
+                    <div class="product-images">
+                        <img src="{{ asset('storage/' . str_replace('public/', '', $product->product_image2)) }}" alt="{{ $product->product_title }}">
+                        <img src="{{ asset('storage/' . str_replace('public/', '', $product->product_image3)) }}" alt="{{ $product->product_title }}">
+                    </div>
                     <div class="product-detail">
-                        <h2 class="text-center">Detail Product</h2>
-                        <div class="product-images mb-3">
-                            <img src="{{ asset('image/Sepatu Lari 3.png') }}" class="img-fluid" alt="Product Image 1">
-                            <img src="{{ asset('image/Sepatu Lari 3.png') }}" class="img-fluid" alt="Product Image 2">
-                        </div>
-                        <div class="product-description">
-                            <h5>Product Description</h5>
-                            <p>This is the detailed description of the product. It covers all the features, specifications, and benefits of the product.</p>
-                        </div>
-                        <div class="product-price">
-                            <h5>Price</h5>
-                            <p>$100</p>
-                        </div>
+                        <h2>{{ $product->product_title }}</h2>
+                        <p class="product-description">{{ $product->description }}</p>
+                        <p class="product-price">Price: {{ formatRupiah($product->product_price) }}</p>
+                        <a href="#" class="btn btn-dark btn-add-to-cart">Add to cart</a>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- last child -->
-        <div class="bg-dark p-3 text-center">
+        <!-- Footer -->
+        <div class="bg-dark p-3 text-center text-light">
             <p>Designed by kami-2024</p>
         </div>
     </div>
 
-    <!-- bootstrap js link -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
-    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" 
-    crossorigin="anonymous">
-    </script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
