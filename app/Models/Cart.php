@@ -11,7 +11,7 @@ class Cart extends Model
     ];
 
     /**
-     * Get the user that owns the cart.
+     * Mendapatkan pengguna yang memiliki keranjang.
      */
     public function user()
     {
@@ -19,7 +19,7 @@ class Cart extends Model
     }
 
     /**
-     * Get the product in the cart.
+     * Mendapatkan produk dalam keranjang.
      */
     public function product()
     {

@@ -11,6 +11,15 @@ use App\Models\Product;
 
 class AdminAreaController extends Controller
 {
+    public function index()
+    {
+        $products = Product::all();
+        $categories = InsertCategories::all();
+        $brands = InsertBrands::all();
+
+        return view('welcome', compact('products', 'categories', 'brands'));
+    }
+    
     public function insertBrand(Insert_Brands $request)
     {
         $input = $request->validated();
@@ -84,20 +93,6 @@ class AdminAreaController extends Controller
 
         // Opsional, Anda bisa mengembalikan respon atau redirect kembali
         return redirect()->back()->with('success', 'Product inserted successfully');
-    }
-
-    public function search(Request $request)
-    {
-        $query = $request->input('query');
-
-        // Lakukan pencarian produk berdasarkan judul, deskripsi, kategori, atau merek
-        $products = Product::where('product_title', 'LIKE', "%$query%")
-                            ->orWhere('description', 'LIKE', "%$query%")
-                            ->orWhere('product_category', 'LIKE', "%$query%")
-                            ->orWhere('product_brand', 'LIKE', "%$query%")
-                            ->get();
-
-        return view('welcome', compact('products'));
     }
 
     public function showProductDetail($id)
