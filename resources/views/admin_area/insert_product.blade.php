@@ -40,28 +40,24 @@
 
             <!-- categories -->
             <div class="form-outline mb-4 w-50 m-auto">
-                <label for="product_category" class="form-label">Select a Category</label>
-                <select name="product_category" id="product_category" class="form-select">
-                    <option value="">Select a Category</option>
-                    <option value="Sport">Sport</option>
-                    <option value="Casual">Casual</option>
-                    <option value="Formal">Formal</option>
-                    <option value="Sandals">Sandals</option>
-                    <option value="Slip-ons">Slip-ons</option>
-                </select>
+            <label for="product_category" class="form-label">Select a Category</label>
+            <select name="product_category" id="product_category" class="form-select">
+            <option value="">Select a Category</option>
+            @foreach ($categories as $category)
+            <option value="{{ $category->categories_title }}">{{ $category->categories_title }}</option>
+            @endforeach
+            </select>
             </div>
 
             <!-- Brands -->
             <div class="form-outline mb-4 w-50 m-auto">
-                <label for="product_brands" class="form-label">Select a Brand</label>
-                <select name="product_brands" id="product_brands" class="form-select">
-                    <option value="">Select a Brand</option>
-                    <option value="Adidas">Adidas</option>
-                    <option value="Puma">Puma</option>
-                    <option value="Nike">Nike</option>
-                    <option value="Asics">Asics</option>
-                    <option value="Doctor Marteen">Doctor Marteen</option>
-                </select>
+            <label for="product_brands" class="form-label">Select a Brand</label>
+            <select name="product_brands" id="product_brands" class="form-select">
+            <option value="">Select a Brand</option>
+            @foreach ($brands as $brand)
+            <option value="{{ $brand->brands_title }}">{{ $brand->brands_title }}</option>
+            @endforeach
+            </select>
             </div>
 
             <!-- Image 1 -->
