@@ -1,14 +1,15 @@
 <?php
+use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminAreaController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CartController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/', [WelcomeController::class,'index'])->name('home');
 
 Route::get('/admin', [AdminAreaController::class, 'view'])->name('admin_area.view');
 
@@ -65,11 +66,16 @@ Route::post('/contact', [ContactController::class, 'store'])->name('contact.stor
 Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
 // Route untuk halaman home setelah login
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Route default
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Route::get('/', [AdminAreaController::class, 'showWelcome']);
+// Route::get('/', [AdminAreaController::class, 'showWelcome']);
+// Rute cart
+
+
+Route::get('/cart', [CartController::class, 'showCart'])->name('cart');
+Route::get('/cart/add/{id}', [CartController::class, 'addtocart'])->name('cart.add');
