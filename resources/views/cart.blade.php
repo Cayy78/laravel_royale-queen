@@ -1,5 +1,3 @@
-<!-- resources/views/cart.blade.php -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,6 +40,12 @@
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
+        }
+        .modal-content {
+            color: #000; /* Ubah warna teks menjadi hitam */
+        }
+        .modal-header .modal-title {
+            color: #28a745; /* Ubah warna teks "Payment berhasil" menjadi hijau */
         }
     </style>
 </head>
@@ -103,31 +107,42 @@
                                 <div class="row">
                                     <div class="col-lg-7">
                                         <hr>
-                                        @foreach ($cartItems as $item)
-<div class="card mb-3">
-    <div class="card-body">
-        <div class="d-flex justify-content-between">
-            <div class="d-flex flex-row align-items-center">
-                <div>
-                    <img src="{{ asset('storage/' . $item->product->product_image1) }}" class="img-fluid rounded-3" alt="Product Image" style="width: 65px;">
-                    <div class="ms-3">
-                        <h5>{{ $item->product->name }}</h5>
-                        <p class="small mb-0">{{ $item->product->description }}</p>
-                    </div>
-                </div>
-                <div class="d-flex flex-row align-items-center">
-                    <div style="width: 80px;">
-                        <h5 class="mb-0">${{ $item->product->price }}</h5>
-                    </div>
-                    <a href="/" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endforeach
+                                        @if($cartItems->isEmpty())
+                                            <p>Cart kosong</p>
+                                        @else
+                                            @foreach ($cartItems as $item)
+                                                <div class="card mb-3">
+                                                    <div class="card-body">
+                                                        <div class="d-flex justify-content-between align-items-center">
+                                                            <div class="d-flex flex-row align-items-center gap-3">
+                                                                <div>
+                                                                    <img src="{{ asset('storage/' . str_replace('public/', '', $item->product->product_image1)) }}" class="img-fluid rounded-3" alt="Product Image" style="width: 65px;">
+                                                                </div>
+                                                                <div>
+                                                                    <h5 class="mb-0">{{ $item->product->product_title }}</h5>
+                                                                    <p class="small mb-0">{{ $item->product->description }}</p>
+                                                                </div>
+                                                                <div>
+                                                                    <h5 class="fw-normal mb-0">{{ $item->quantity }}</h5>
+                                                                </div>
+                                                                <div>
+                                                                    <h5 class="mb-0">{{ formatRupiah($item->product->product_price) }}</h5>
+                                                                </div>
+                                                                <div>
+                                                                    <h5 class="mb-0">{{ formatRupiah($item->product->product_price * $item->quantity) }}</h5>
+                                                                </div>
+                                                                <div>
+                                                                    <a href="{{ route('cart.remove', ['id' => $item->product->id]) }}" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        @endif
                                     </div>
 
+                                    @if(!$cartItems->isEmpty())
                                     <div class="col-lg-5">
                                         <div class="card bg-primary text-white rounded-3">
                                             <div class="card-body">
@@ -141,16 +156,16 @@
                                                 <a href="#!" type="submit" class="text-white"><i class="fab fa-cc-amex fa-2x me-2"></i></a>
                                                 <a href="#!" type="submit" class="text-white"><i class="fab fa-cc-paypal fa-2x"></i></a>
 
-                                                <form class="mt-4">
+                                                <form class="mt-4" id="checkout-form">
                                                     <div data-mdb-input-init class="form-outline form-white mb-4">
-                                                        <input type="text" id="typeName" class="form-control form-control-lg" siez="17"
-                                                            placeholder="Cardholder's Name" />
+                                                        <input type="text" id="typeName" class="form-control form-control-lg" size="17"
+                                                            placeholder="Cardholder's Name" required />
                                                         <label class="form-label" for="typeName">Cardholder's Name</label>
                                                     </div>
 
                                                     <div data-mdb-input-init class="form-outline form-white mb-4">
-                                                        <input type="text" id="typeText" class="form-control form-control-lg" siez="17"
-                                                            placeholder="1234 5678 9012 3457" minlength="19" maxlength="19" />
+                                                        <input type="text" id="typeText" class="form-control form-control-lg" size="17"
+                                                            placeholder="1234 5678 9012 3457" minlength="19" maxlength="19" required />
                                                         <label class="form-label" for="typeText">Card Number</label>
                                                     </div>
 
@@ -158,15 +173,15 @@
                                                         <div class="col-md-6">
                                                             <div data-mdb-input-init class="form-outline form-white">
                                                                 <input type="text" id="typeExp" class="form-control form-control-lg"
-                                                                    placeholder="MM/YYYY" size="7" id="exp" minlength="7" maxlength="7" />
+                                                                    placeholder="MM/YYYY" size="7" minlength="7" maxlength="7" required />
                                                                 <label class="form-label" for="typeExp">Expiration</label>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div data-mdb-input-init class="form-outline form-white">
-                                                                <input type="password" id="typeText" class="form-control form-control-lg"
-                                                                    placeholder="&#9679;&#9679;&#9679;" size="1" minlength="3" maxlength="3" />
-                                                                <label class="form-label" for="typeText">Cvv</label>
+                                                                <input type="password" id="typeCvv" class="form-control form-control-lg"
+                                                                    placeholder="&#9679;&#9679;&#9679;" size="3" minlength="3" maxlength="3" required />
+                                                                <label class="form-label" for="typeCvv">Cvv</label>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -176,17 +191,44 @@
 
                                                 <div class="d-flex justify-content-between mb-4">
                                                     <p class="mb-2">Total</p>
-                                                    <p class="mb-2">$4818.00</p>
+                                                    <p class="mb-2">{{ formatRupiah($total) }}</p>
                                                 </div>
 
-                                                <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-info btn-block btn-lg">
+                                                <button type="button" id="checkout-button" class="btn btn-info btn-block btn-lg" disabled>
                                                     <div class="d-flex justify-content-between">
                                                         <span>Checkout <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
                                                     </div>
                                                 </button>
+
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="paymentModalLabel">Payment Berhasil</h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <p>Detail Barang:</p>
+                                                                @foreach ($cartItems as $item)
+                                                                    <div class="d-flex align-items-center mb-2">
+                                                                        <img src="{{ asset('storage/' . str_replace('public/', '', $item->product->product_image1)) }}" class="img-fluid rounded-3 me-2" alt="Product Image" style="width: 50px;">
+                                                                        <p class="mb-0">{{ $item->product->product_title }} - {{ $item->quantity }} x {{ formatRupiah($item->product->product_price) }}</p>
+                                                                    </div>
+                                                                @endforeach
+                                                                <p>Total: {{ formatRupiah($total) }}</p>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- End of Modal -->
                                             </div>
                                         </div>
                                     </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -200,5 +242,32 @@
             <p>Designed by kami-2024</p>
         </div>
     </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const form = document.getElementById("checkout-form");
+            const checkoutButton = document.getElementById("checkout-button");
+
+            form.addEventListener("input", function() {
+                const isValid = form.checkValidity();
+                console.log('Form valid:', isValid); // Debugging line
+                checkoutButton.disabled = !isValid;
+            });
+
+            checkoutButton.addEventListener("click", function() {
+                if (form.checkValidity()) {
+                    const paymentModal = new bootstrap.Modal(document.getElementById('paymentModal'));
+                    paymentModal.show();
+
+                    // Kosongkan keranjang setelah modal ditutup
+                    paymentModal._element.addEventListener('hidden.bs.modal', function () {
+                        window.location.href = '{{ route("cart.clear") }}';
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>

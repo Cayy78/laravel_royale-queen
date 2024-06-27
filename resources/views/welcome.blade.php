@@ -107,7 +107,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title">{{ $product->product_title }}</h5>
                                     <p class="card-text">{{ $product->description }}</p>
-                                    <p class="card-text">${{ $product->product_price }}</p>
+                                    <p class="card-text">{{ formatRupiah($product->product_price) }}</p>
                                     <a href="{{ route('cart.add', ['id' => $product->id]) }}" class="btn btn-dark add-to-cart">Add to cart</a>
                                     <a href="{{ route('product.detail', ['id' => $product->id]) }}" class="btn btn-secondary">View Details</a>
                                 </div>

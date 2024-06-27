@@ -73,14 +73,7 @@
                         <li class="nav-item">
                             <a class="nav-link text-white" href="#"><i class="fa-solid fa-cart-shopping"></i><sup>1</sup></a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="#">Total Price: 100/-</a>
-                        </li>
                     </ul>
-                    <form action="{{ route('search') }}" method="GET" class="d-flex mb-4">
-                        <input class="form-control me-2" type="search" name="query" placeholder="Search for products..." aria-label="Search">
-                        <button class="btn btn-outline-light" type="submit">Search</button>
-                    </form>
                 </div>
             </div>
         </nav>

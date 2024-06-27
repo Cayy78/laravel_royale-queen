@@ -57,3 +57,6 @@ Route::post('/contact', [ContactController::class, 'store'])->name('contact.stor
 // Rute untuk halaman keranjang
 Route::get('/cart', [CartController::class, 'showCart'])->name('cart');
 Route::get('/cart/add/{id}', [CartController::class, 'addtocart'])->name('cart.add');
+
+Route::get('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
+Route::get('/cart/clear', [CartController::class, 'clearCart'])->name('cart.clear');
