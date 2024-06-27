@@ -46,7 +46,9 @@ class AdminAreaController extends Controller
 
     public function showInsertProductForm()
     {
-        return view('admin_area.insert_product');
+        $categories = InsertCategories::all();
+        $brands = InsertBrands::all();
+        return view('admin_area.insert_product', compact('categories','brands'));
     }
 
     public function insertProduct(Request $request)
