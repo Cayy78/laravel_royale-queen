@@ -35,7 +35,7 @@ class LoginController extends Controller
             $request->session()->regenerate();
            
             if (Auth::user()->isAdmin()) {
-                return redirect()->route('admin.orders');
+                return redirect()->route('admin.index');
             }
 
             return redirect($this->redirectTo); 
