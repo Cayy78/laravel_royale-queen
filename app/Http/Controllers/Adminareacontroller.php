@@ -86,9 +86,24 @@ class AdminAreaController extends Controller
         return redirect()->back()->with('success', 'Product inserted successfully');
     }
 
-    public function showProductDetail()
+    public function search(Request $request)
     {
-        return view('product_detail');
+        $query = $request->input('query');
+
+        // Lakukan pencarian produk berdasarkan judul, deskripsi, kategori, atau merek
+        $products = Product::where('product_title', 'LIKE', "%$query%")
+                            ->orWhere('description', 'LIKE', "%$query%")
+                            ->orWhere('product_category', 'LIKE', "%$query%")
+                            ->orWhere('product_brand', 'LIKE', "%$query%")
+                            ->get();
+
+        return view('welcome', compact('products'));
+    }
+
+    public function showProductDetail($id)
+    {
+        $product = Product::findOrFail($id);
+        return view('product_detail', compact('product'));
     }
 
     public function editCategory($id)
