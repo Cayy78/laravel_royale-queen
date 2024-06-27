@@ -16,11 +16,10 @@
     crossorigin="anonymous" 
     referrerpolicy="no-referrer" />
     <!-- Custom CSS -->
-     <!-- custom css for styling -->
-     <style>
+    <style>
         .logo {
-            width: 100px; /* Adjusted width */
-            height: auto; /* Adjust height to maintain aspect ratio */
+            width: 100px;
+            height: auto;
         }
         .card-img-top {
             width: 90%;
@@ -76,7 +75,7 @@
                     </form>
                 </div>
             </div>
-</nav>
+        </nav>
         <!-- Second child -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
             <ul class="navbar-nav me-auto">
@@ -98,25 +97,26 @@
                     @endif
                 </li>
             </ul>
-        </nav>  
+        </nav>
 
         <!-- Fourth Child -->
         <div class="row">
             <div class="col-md-10">
                 <!-- Products -->
                 <div class="row">
-                    <div class="col-md-4 mb-2">
-                        <div class="card" style="width: 30rem;">
-                            <img src="{{ asset('image/Sepatu Lari 3.png') }}" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-dark">Add to cart</a>
-                                <a href="{{ url('product_detail') }}" class="btn btn-secondary">View Details</a>
+                    @foreach($products as $product)
+                        <div class="col-md-4 mb-2">
+                            <div class="card" style="width: 30rem;">
+                                <img src="{{ asset('storage/' . str_replace('public/', '', $product->product_image1)) }}" class="card-img-top" alt="{{ $product->product_title }}">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ $product->product_title }}</h5>
+                                    <p class="card-text">{{ $product->description }}</p>
+                                    <a href="#" class="btn btn-dark">Add to cart</a>
+                                    <a href="{{ url('product_detail', ['id' => $product->id]) }}" class="btn btn-secondary">View Details</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- Repeat for other products -->
+                    @endforeach
                 </div>
             </div>
             <div class="col-md-2 bg-secondary p-0">
