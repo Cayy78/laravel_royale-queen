@@ -76,7 +76,6 @@
                     <button><a href="{{ url('admin?view=view_categories') }}" class="nav-link text-light bg-dark my-1">View Categories</a></button>
                     <button><a href="{{ url('admin?view=brands') }}" class="nav-link text-light bg-dark my-1">Insert Brands</a></button>
                     <button><a href="{{ url('admin?view=view_brands') }}" class="nav-link text-light bg-dark my-1">View Brands</a></button>
-                    <button><a href="{{ url('logout') }}" class="nav-link text-light bg-dark my-1">Logout</a></button>
                 </div>
             </div>
         </div>
